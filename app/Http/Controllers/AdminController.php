@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AjouterManager;
+use App\Http\Requests\AjouterResponsable;
 use App\Http\Requests\AjoutLien;
 use App\Models\Departement;
 use App\Models\liens;
@@ -59,8 +60,9 @@ class AdminController extends Controller
     }
 
     public function liste_departement(){
+        $liste_responsable = Responsable::orderBy('intitule', 'desc')->get();
         $liste_departement = Departement::with('Responsable')->orderBy('id')->paginate(5);
-        return view('administrateur.liste-departement', compact('liste_departement'));
+        return view('administrateur.system-data.liste-departement', compact('liste_departement', 'liste_responsable'));
     }
 
     public function creer_departement( ){
@@ -68,7 +70,21 @@ class AdminController extends Controller
     }
 
     public function supprimer_departement(){
-        
+
+    }
+
+    public function creer_responsable(Responsable $Respons, AjouterResponsable $request){
+        try {
+            $Respons-> intitule = $request->intitule;
+            $Respons->save();
+            return redirect()->route('liste-departement')->with('message', 'Opération réussi...');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function supprimer_responsable(){
+
     }
 
     /**

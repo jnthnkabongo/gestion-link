@@ -56,14 +56,14 @@
             <div class="col-5 col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="card-title text-center">Ajouter un département</h1>
+                        <h1 class="card-title text-center">Ajouter un Responsable</h1>
 
-                        <form class="row g-3" action="{{ route('soumission-manager') }}" method="POST" class="row g-3">
+                        <form class="row g-3" action="{{ route('soumission-responsable') }}" method="POST" class="row g-3">
                             @csrf
 
                             <div class="col-auto">
                               <label for="inputPassword2" class="visually-hidden">Responsable</label>
-                              <input type="password" class="form-control" id="inputPassword2" placeholder="Responsable">
+                              <input type="text" class="form-control" id="intitule" name="intitule" placeholder="Responsable">
                             </div>
                             <div class="col-auto">
                               <button type="submit" class="btn btn-primary mb-3">Enregistrer</button>
@@ -75,14 +75,14 @@
                     <div class="card-body">
                         <h1 class="card-title text-center">Ajouter un département</h1>
 
-                        <form action="{{ route('soumission-manager') }}" method="POST" class="row g-3"
+                        <form action="{{ route('soumission-departement') }}" method="POST" class="row g-3"
                         data-bs-toggle="tooltip" data-bs-placement="top"
                         data-bs-custom-class="custom-tooltip"
                         data-bs-title="Avertissement !! Avant de rajouter un departement. Veuillez ajouter le responsable.">
                             @csrf
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Liens">
+                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Liens">
                                     <label for="floatingName">Nom</label>
                                 </div>
                                 <div class="text-danger">
@@ -94,8 +94,11 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-floating mb-3">
-                                    <select class="form-select" id="users_id" name="users_id" aria-label="Roles">
+                                    <select class="form-select" id="responsable_id" name="responsable_id" aria-label="Roles">
                                         <option value="">Responsable</option>
+                                        @foreach ($liste_responsable as $itemResponsable)
+                                            <option value="{{ $itemResponsable->id }}">{{ $itemResponsable->intitule }}</option>
+                                        @endforeach
 
                                     </select>
                                     <label for="floatingSelect">Responsable</label>
@@ -112,7 +115,6 @@
                                     Enregistrer
                                 </button>
                             </div>
-
                         </form>
                     </div>
                 </div>
