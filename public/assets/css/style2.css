@@ -1,0 +1,12 @@
+
+body {
+    background-image: src('../img/bboxx.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+    font-family: "Open Sans", sans-serif;
+}
+
