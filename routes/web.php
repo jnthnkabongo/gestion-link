@@ -42,7 +42,7 @@ Route::get('liste-departement', [AdminController::class, 'liste_departement'])->
 Route::post('soumission-responsable', [AdminController::class, 'creer_responsable'])->name('soumission-responsable');
 Route::get('supprimer-responsable', [AdminController::class, 'supprimer_responsable'])->name('suppression-responsable');
 Route::get('soumission-departement', [AdminController::class, 'creer_departement'])->name('soumission-departement');
-Route::get('supprimer-departement', [AdminController::class, 'suppimer_departement'])->name('soumission-departement');
+Route::get('supprimer-departement', [AdminController::class, 'suppimer_departement'])->name('supprimer-departement');
 
 Route::get('liste-liens', [ManagerController::class, 'index'])->name('index-manager');
 Route::get('formulaire-creation-lien', [ManagerController::class, 'create'])->name('affichage-formulaire-manager');

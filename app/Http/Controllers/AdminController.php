@@ -61,7 +61,7 @@ class AdminController extends Controller
 
     public function liste_departement(){
         $liste_responsable = Responsable::orderBy('intitule', 'desc')->get();
-        $liste_departement = Departement::with('Responsable')->orderBy('id')->paginate(5);
+        $liste_departement = Departement::with('Responsable')->orderBy('nom')->paginate(5);
         return view('administrateur.system-data.liste-departement', compact('liste_departement', 'liste_responsable'));
     }
 
@@ -69,8 +69,13 @@ class AdminController extends Controller
 
     }
 
-    public function supprimer_departement(){
-
+    public function supprimer_departement(Departement $itemDepartement){
+        try {
+            $itemDepartement->delete();
+            return back()->with('message','Suppression réussi !');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function creer_responsable(Responsable $Respons, AjouterResponsable $request){

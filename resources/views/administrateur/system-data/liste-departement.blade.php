@@ -41,7 +41,7 @@
                                     <td><p class="tableau">{{ $itemDepartement->nom}}</p></td>
                                     <td><p class="tableau">{{ $itemDepartement->Responsable ? $itemDepartement->Responsable->intitule : 'Aucun responsable'}}</p></td>
                                     <td>
-                                        <a class="liens" href="{{ route('supprimer-manager', $itemDepartement) }}"><i class="bi bi-trash"></i></a>
+                                        <a class="liens" href="{{ route('supprimer-departement', $itemDepartement) }}"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
                                 @empty
