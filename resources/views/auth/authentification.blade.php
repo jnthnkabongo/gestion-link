@@ -46,18 +46,18 @@ height: 500px;
                         </div>
                         <form class="bg-white tertiary " action="{{ route('login') }}" method="POST">
                             @csrf
-                            <div class="form-floating mb-3">
-                                <input type="email" id="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Adresse e-mail</label>
+                                <input type="email" class="form-control" id="email" name="email">
                                 <div class="text-danger">
                                     @error('email')
                                         {{ $message }}
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" id="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-                                <label for="floatingPassword">Password</label>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="password" name="password">
                                 <div class="text-danger">
                                     @error('password')
                                         {{ $message }}
