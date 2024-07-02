@@ -50,7 +50,7 @@
                         <img src="{{ asset('assets/img/icon.png') }}" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{Str::upper( \Illuminate\Support\Facades\Auth::user()->roles->intitule )}}</span>
 
-                    </a><!-- End Profile Iamge Icon -->
+                    </a>
                     @auth
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li class="dropdown-header">

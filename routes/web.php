@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('page-accueil');
 Route::post('/', [AuthController::class, 'login'])->name('login');
+
 Route::get('redirects', [HomeController::class, 'index'])->name('redirect');
 Route::get('deconnexion', [AuthController::class, 'destroy'])->name('logout');
 
