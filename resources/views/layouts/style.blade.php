@@ -49,6 +49,7 @@
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                 <li class="dropdown-header">
                                     <h6>{{Str::upper( \Illuminate\Support\Facades\Auth::user()->name )}}</h6>
+                                    <span>{{ \Illuminate\Support\Facades\Auth::user()->email }}</span>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -84,6 +85,12 @@
                     <a class="nav-link" href="{{ route('liste-departement') }}">
                         <i class="bi bi-list"></i>
                         <span>Gestion Département</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('liste-responsable') }}">
+                        <i class="bi bi-person-plus bi-lg"></i>
+                        <span>Gestion Responsable</span>
                     </a>
                 </li>
                 <li class="nav-item">

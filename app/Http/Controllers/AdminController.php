@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AjouterDepartement;
 use App\Http\Requests\AjouterManager;
 use App\Http\Requests\AjouterResponsable;
 use App\Http\Requests\AjoutLien;
@@ -65,8 +66,23 @@ class AdminController extends Controller
         return view('administrateur.system-data.liste-departement', compact('liste_departement', 'liste_responsable'));
     }
 
-    public function creer_departement( ){
+    public function create_departement( ){
 
+        $liste_responsable = Responsable::orderBy('intitule', 'desc')->get();
+        $liste_departement = Departement::with('Responsable')->orderBy('nom')->paginate(5);
+        return view('administrateur.system-data.departement-create', compact('liste_responsable'));
+    }
+
+    public function soumission_departement(Departement $Departement, AjouterDepartement $request){
+        try {
+
+            $Departement-> responsable_id = $request->responsable_id;
+            $Departement-> nom = $request->nom;
+            $Departement->save();
+            return redirect()->route('liste-departement')->with('message', 'Opération réussi...');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function supprimer_departement(Departement $itemDepartement){
@@ -76,6 +92,21 @@ class AdminController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+    public function liste_responsable(){
+       // $liste_responsable = Responsable::orderBy('intitule', 'desc')->get();
+       $liste_responsable = Responsable::where('departements.id',)
+                         ->join('responsables', 'departements.responsable_id', '=', 'id')
+                         ->select('responsable_id')
+                         ->first();
+        return view('administrateur.system-data.liste-responsable', compact('liste_responsable'));
+
+
+
+        //$responsableId = $responsable ? $responsable->id : null;
+    }
+    public function create_responsable(){
+        return view('administrateur.system-data.responsable-create');
     }
 
     public function creer_responsable(Responsable $Respons, AjouterResponsable $request){

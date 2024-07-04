@@ -12,4 +12,5 @@ class Responsable extends Model
         'id',
         'intitule'
     ];
+    
 }
