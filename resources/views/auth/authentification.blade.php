@@ -30,7 +30,7 @@
 background-image: url('{{ asset('assets/images/15.webp') }}');
 background-size: cover;
 background-position: center;
-height: 500px;
+height: 750px;
 ">
 
     <div >

@@ -61,7 +61,7 @@ class AdminController extends Controller
     }
 
     public function liste_departement(){
-        $liste_responsable = Responsable::orderBy('intitule', 'desc')->get();
+        $liste_responsable = Responsable::orderBy('intitule', 'asc')->get();
         $liste_departement = Departement::with('Responsable')->orderBy('nom')->paginate(5);
         return view('administrateur.system-data.liste-departement', compact('liste_departement', 'liste_responsable'));
     }
@@ -94,16 +94,13 @@ class AdminController extends Controller
         }
     }
     public function liste_responsable(){
-       // $liste_responsable = Responsable::orderBy('intitule', 'desc')->get();
-       $liste_responsable = Responsable::where('departements.id',)
-                         ->join('responsables', 'departements.responsable_id', '=', 'id')
-                         ->select('responsable_id')
-                         ->first();
-        return view('administrateur.system-data.liste-responsable', compact('liste_responsable'));
+        $liste_responsable = Responsable::with('Departement')->paginate(5);
+       //$liste_responsable = Responsable::with('Departement')->leftJoin('departements', 'responsables.departement_id', '=', 'departements.id')
+       //                          ->select('responsables.*', 'departements.nom as departement_nom') // Sélectionnez les colonnes nécessaires
+       //                          ->paginate(5);
+       return view('administrateur.system-data.liste-responsable', compact('liste_responsable'));
 
 
-
-        //$responsableId = $responsable ? $responsable->id : null;
     }
     public function create_responsable(){
         return view('administrateur.system-data.responsable-create');
@@ -119,8 +116,13 @@ class AdminController extends Controller
         }
     }
 
-    public function supprimer_responsable(){
-
+    public function supprimer_responsable(Responsable $itemResponsable){
+        try {
+            $itemResponsable->delete();
+            return back()->with('message','Suppression reussi !');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**

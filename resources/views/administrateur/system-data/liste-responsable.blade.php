@@ -43,14 +43,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($liste_responsable as $itemDepartement)
+                                    @forelse ($liste_responsable as $itemResponsable)
                                     <tr>
-                                        <td><p class="tableau">{{ $itemDepartement->id}}</p></td>
-                                        <td><p class="tableau">{{ $itemDepartement->intitule}}</p></td>
-                                        <td><p class="tableau">{{ $itemDepartement->Responsable ? $itemDepartement->Responsable->intitule : 'Aucun département affecté'}}</p></td>
+                                        <td><p class="tableau">{{ ($liste_responsable->perPage() * ($liste_responsable->currentPage() - 1) + $loop->iteration) }}</p></td>
+                                        <td><p class="tableau">{{ $itemResponsable->intitule}}</p></td>
+                                        <td><p class="tableau">{{ $itemResponsable->nom}}</p></td>
+                                        <td><p class="tableau">{{ $itemResponsable->Departement ? $itemResponsable->Departement->nom : 'Aucun departement' }}</p></td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('supprimer-departement', $itemDepartement) }}"><i class="bi bi-pencil"></i></a>
-                                            <a class="btn btn-danger" href="{{ route('supprimer-departement', $itemDepartement) }}"><i class="bi bi-trash"></i></a>
+                                            <a class="" href=""><i class="bi bi-pencil"></i></a>
+                                            <a class="liens" href="{{ route('supprimer-responsable', $itemResponsable) }}"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                                     @empty
@@ -59,6 +60,11 @@
 
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <div class="container-fluid">
+                                {{ $liste_responsable->withQueryString()->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

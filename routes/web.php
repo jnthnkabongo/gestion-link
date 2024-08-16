@@ -43,10 +43,10 @@ Route::get('liste-departement', [AdminController::class, 'liste_departement'])->
 Route::post('soumission-departement', [AdminController::class, 'soumission_departement'])->name('soumission-departement');
 Route::get('liste-responsable', [AdminController::class, 'liste_responsable'])->name('liste-responsable');
 Route::post('soumission-responsable', [AdminController::class, 'creer_responsable'])->name('soumission-responsable');
-Route::get('supprimer-responsable', [AdminController::class, 'supprimer_responsable'])->name('suppression-responsable');
+Route::get('supprimer-responsable-{itemResponsable}', [AdminController::class, 'supprimer_responsable'])->name('supprimer-responsable');
 Route::get('create-responsable', [AdminController::class, 'create_responsable'])->name('create-responsable');
 Route::get('soumission-departement', [AdminController::class, 'creer_departement'])->name('soumission-departement');
-Route::get('supprimer-departement', [AdminController::class, 'suppimer_departement'])->name('supprimer-departement');
+Route::get('supprimer-departement-{itemDepartement}', [AdminController::class, 'suppimer_departement'])->name('supprimer-departement');
 Route::get('create-departement', [AdminController::class, 'create_departement'])->name('create-departement');
 
 Route::get('liste-liens', [ManagerController::class, 'index'])->name('index-manager');

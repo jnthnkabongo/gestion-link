@@ -12,5 +12,15 @@ class Responsable extends Model
         'id',
         'intitule'
     ];
-    
+
+
+    /**
+     * Get the Departement that owns the Responsable
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Departement()
+    {
+        return $this->belongsTo(Departement::class, 'departement_id', 'id');
+    }
 }

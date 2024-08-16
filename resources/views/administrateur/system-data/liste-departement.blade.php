@@ -45,7 +45,7 @@
                                 <tbody>
                                     @forelse ($liste_departement as $itemDepartement)
                                     <tr>
-                                        <td><p class="tableau">{{ $itemDepartement->id}}</p></td>
+                                        <td><p class="tableau">{{ ($liste_departement->perPage() * ($liste_departement->currentpage() -1) + $loop->iteration )}}</p></td>
                                         <td><p class="tableau">{{ $itemDepartement->nom}}</p></td>
                                         <td><p class="tableau">{{ $itemDepartement->Responsable ? $itemDepartement->Responsable->intitule : 'Aucun responsable'}}</p></td>
                                         <td>
